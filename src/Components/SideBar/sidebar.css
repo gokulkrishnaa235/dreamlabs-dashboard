@@ -1,0 +1,85 @@
+.sidebar {
+  position: fixed;
+  z-index: 20;
+  /* box-shadow: 0px 2px 5px 0px #888888; */
+  margin-top: 60px;
+  height: 90%;
+  background-color: #ffffff;
+  width: 240px;
+  overflow-y: scroll;
+}
+
+.filter-head {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 16px;
+  align-items: center;
+}
+
+.clear-filter-btn {
+    height: 20px;
+}
+
+.filter-title {
+  color: #808080;
+  padding-left: 16px;
+}
+
+.date-filter-grp {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  color: #808080;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.MuiSlider-root {
+  color: #72b3d4 !important;
+  margin-left: 16px;
+  width: 85% !important;
+}
+
+.slider-filter-grp {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  color: #808080;
+}
+
+.filter-label {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 100;
+}
+
+.MuiFormControl-root {
+  padding-top: 4px !important;
+  margin-top: 8px !important;
+}
+
+.MuiFormLabel-root {
+  font-size: 10px;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: #888888 !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid #72b3d4 !important;
+}
+
+.MuiInputBase-input {
+  font-size: 10px !important;
+}
+
+
+.MuiButton-outlined {
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    padding: 5px 15px;
+    width: 106px !important;
+    font-size: 10px !important;
+}

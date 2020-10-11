@@ -1,26 +1,104 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import Header from "./Components/Header";
+import SideBar from "./Components/SideBar";
+import Dashboard from "./Components/Dashboard";
+import {
+  selectTableData,
+  selectCheckBoxGroup,
+  selectMatchingPercentage,
+  selectCountryOrigin,
+  selectWatchList,
+  selectRiskLevel,
+  selectPepClass,
+  selectFromDate,
+  selectToDate,
+  selectTableHeading,
+  dataCount,
+  totalMatch,
+  highRiskCount,
+  WarningCount,
+} from "./Store/selector";
+import { updateTableData } from "./Store/action";
+import { sample } from "../src/Data/sample";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+
+class App extends React.Component {
+  componentDidMount() {
+    this.props.updateTableData(sample);
+  }
+
+  // componentDidUpdate(prevProps) {
+  //   console.log("Table updated !!");
+  //   if (
+  //     prevProps.matchPercentage !== this.props.matchPercentage &&
+  //     prevProps.countryOrigin.length !== this.props.countryOrigin.length
+  //   )
+  //     this.props.updateTableData(sample);
+  // }
+
+  render() {
+    return (
+      <>
+        <Header />
+        <div className="main-container">
+          <SideBar
+            dispatch={this.props.dispatch}
+            checkBoxGroup={this.props.checkBoxGroup}
+            matchPercentage={this.props.matchPercentage}
+            countryOrigin={this.props.countryOrigin}
+            watchList={this.props.watchList}
+            riskLevel={this.props.riskLevel}
+            pepClass={this.props.pepClass}
+            fromDate={this.props.fromDate}
+            toDate={this.props.toDate}
+            tableHeading={this.props.tableHeading}
+          />
+          <Dashboard
+            dispatch={this.props.dispatch}
+            tableData={this.props.tableData}
+            matchPercentage={this.props.matchPercentage}
+            countryOrigin={this.props.countryOrigin}
+            watchList={this.props.watchList}
+            riskLevel={this.props.riskLevel}
+            pepClass={this.props.pepClass}
+            fromDate={this.props.fromDate}
+            toDate={this.props.toDate}
+            tableHeading={this.props.tableHeading}
+            totalCount={this.props.totalCount}
+            matchCount={this.props.matchCount}
+            riskCount={this.props.riskCount}
+            warningCount={this.props.warningCount}
+          />
+        </div>
+      </>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  tableData: selectTableData(state),
+  checkBoxGroup: selectCheckBoxGroup(state),
+  matchPercentage: selectMatchingPercentage(state),
+  countryOrigin: selectCountryOrigin(state),
+  watchList: selectWatchList(state),
+  riskLevel: selectRiskLevel(state),
+  pepClass: selectPepClass(state),
+  fromDate: selectFromDate(state),
+  toDate: selectToDate(state),
+  tableHeading: selectTableHeading(state),
+  totalCount: dataCount(state),
+  matchCount: totalMatch(state),
+  riskCount: highRiskCount(state),
+  warningCount: WarningCount(state),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    updateTableData: (value) => dispatch(updateTableData(value)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
