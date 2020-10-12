@@ -73,3 +73,10 @@
 .MuiPaper-root {
   padding-top: 16px !important;
 }
+
+
+.MuiButton-contained{
+  margin-right: 16px !important;
+  background-color: #72b3d4 !important;
+  color: #ffffff !important;
+}

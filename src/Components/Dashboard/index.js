@@ -7,6 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import IconButton from "@material-ui/core/IconButton";
 import SettingsIcon from "@material-ui/icons/Settings";
+// import Button from "@material-ui/core/Button";
 import CustomTable from "../CustomTable";
 import Cards from "../Cards";
 import { updateTableHeading } from "../../Store/action";
@@ -76,6 +77,24 @@ function Dashboard(props) {
     }
   };
 
+  // const downloadCsv = () => {
+  //   const items = tableData;
+  //   const replacer = (key, value) => (value === null ? "" : value); // specify how you want to handle null values here
+  //   const header = Object.keys(items[0]);
+  //   let csv = items.map((row) =>
+  //     header
+  //       .map((fieldName) => JSON.stringify(row[fieldName], replacer))
+  //       .join(",")
+  //   );
+  //   csv.unshift(header.join(","));
+  //   csv = csv.join("\r\n");
+  //   console.log(csv);
+  //   let csvContent = "data:text/csv;charset=utf-8," + csv;
+
+  //   var encodedUri = encodeURI(csvContent);
+  //   window.open(encodedUri);
+  // };
+
   return (
     <div className="dashboard-container">
       <div className="card-group">
@@ -85,6 +104,9 @@ function Dashboard(props) {
         <Cards count={warningCount} label="Warning Watch List" />
         <Cards count="2" label="assignments" />
       </div>
+      {/* <Button variant="contained" onClick={downloadCsv}>
+        Export
+      </Button> */}
       <IconButton
         ref={anchorRef}
         aria-controls={open ? "menu-list-grow" : undefined}
