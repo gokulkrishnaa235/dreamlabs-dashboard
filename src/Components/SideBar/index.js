@@ -125,7 +125,7 @@ function SideBar(props) {
     dispatch(updateCountryOrigin(["India", "Russia", "UK", "Mexico", "US"]));
     dispatch(updateRiskLevel(["High", "Medium", "Low"]));
     dispatch(updateFromDate("01/01/1980"));
-    dispatch(updateToDate(new Date().toLocaleDateString()));
+    dispatch(updateToDate("01/01/2020"));
   }
 
   const selectAllWatchList = () => {

@@ -14,7 +14,7 @@ export const initialState = {
   tableData: [],
   matchingPercentage: 100,
   fromDate: "01/01/1980",
-  toDate: new Date().toLocaleDateString(),
+  toDate: "01/01/2020",
   countryOrigin: ["India", "Russia", "UK", "Mexico", "US"],
   riskLevel: ["High", "Medium", "Low"],
   watchList: ["S", "F&P", "W"],
