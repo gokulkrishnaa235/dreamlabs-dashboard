@@ -18,6 +18,7 @@ import {
   totalMatch,
   highRiskCount,
   WarningCount,
+  filteredData,
 } from "./Store/selector";
 import { updateTableData } from "./Store/action";
 import { sample } from "../src/Data/sample";
@@ -29,14 +30,11 @@ class App extends React.Component {
     this.props.updateTableData(sample);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   console.log("Table updated !!");
-  //   if (
-  //     prevProps.matchPercentage !== this.props.matchPercentage &&
-  //     prevProps.countryOrigin.length !== this.props.countryOrigin.length
-  //   )
-  //     this.props.updateTableData(sample);
-  // }
+  componentDidUpdate(prevProps) {
+
+  console.log("Table updated !!", this.props.filterCount);
+    
+  }
 
   render() {
     return (
@@ -57,7 +55,7 @@ class App extends React.Component {
           />
           <Dashboard
             dispatch={this.props.dispatch}
-            tableData={this.props.tableData}
+            tableData={this.props.filterCount}
             matchPercentage={this.props.matchPercentage}
             countryOrigin={this.props.countryOrigin}
             watchList={this.props.watchList}
@@ -92,6 +90,7 @@ const mapStateToProps = (state) => ({
   matchCount: totalMatch(state),
   riskCount: highRiskCount(state),
   warningCount: WarningCount(state),
+  filterCount: filteredData(state),
 });
 
 function mapDispatchToProps(dispatch) {
