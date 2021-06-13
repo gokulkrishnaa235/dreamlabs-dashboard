@@ -1,0 +1,56 @@
+.modal {
+    background-color: rgba(10, 10, 10, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+}
+
+.modal .modal-wrapper {
+    overflow: auto;
+    border-radius: 0.5rem;
+    position: relative;
+    max-width: 50%;
+    max-height: 45rem;
+    margin: auto;
+    flex: 1 0 0;
+    background-color: #FFF;
+}
+
+.modal .modal-wrapper .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.modal .modal-wrapper .mode-header {
+    text-align: center;
+    margin: 0 3rem;
+}
+
+.modal .modal-wrapper .modal-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal .modal-wrapper .modal-content span {
+    padding: 0.5rem;
+}
+
+.modal .modal-wrapper .modal-footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+.modal .modal-wrapper .modal-footer button {
+    cursor: pointer;
+}
+

@@ -1,132 +1,80 @@
 import React, { memo } from "react";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import DeleteIcon from "@material-ui/icons/Delete";
 import "./customTable.css";
 
 const Title = [
-  "Created Date",
-  "Type",
-  "Name",
-  "Matches",
-  "Match Status",
-  "Risk Level",
-  "Watch List",
-  "PEP",
-  "Assigned",
-  "Status",
-  "Country",
+  "sku",
+  "category",
+  "description",
+  "mc_price",
+  "product_image",
+  "product_name",
+  "weight",
 ];
 
 const getKey = {
-  created_date: "Created Date",
-  type: "Type",
-  name: "Name",
-  matches: "Matches",
-  "match-status": "Match Status",
-  "risk-level": "Risk Level",
-  "watch-list": "Watch List",
-  pep: "PEP",
-  assigned: "Assigned",
-  status: "Status",
-  country: "Country",
+  sku: "SKU",
+  category: "Category",
+  description: "Description",
+  mc_price: "MC Price",
+  product_image: "Product Image",
+  product_name: "product Name",
+  weight: "weight",
 };
 
 function CustomTable(props) {
-  const {
-    tableData,
-    tableHeading,
-  } = props;
-
-  
+  const { tableData, openEditMode, openViewMode, openDeleteMode } = props;
 
   return (
     <React.Fragment>
       <table>
         <thead>
           <tr>
-            {Title.map((title) =>
-              tableHeading.includes(title) ? (
-                <th key={title}> {title}</th>
-              ) : null
-            )}
+            {Title.map((title) => (
+              <th key={title}> {getKey[title]}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {tableData.map((value) => {
-              return (
-                <tr key={value._id}>
-                  {tableHeading.includes(getKey["created_date"]) ? (
-                    <td
-                      id="created_date"
-                      className={value.status ? "" : "disabled"}
-                    >
-                      {value.created_date}
-                    </td>
-                  ) : null}
-                  {tableHeading.includes(getKey["type"]) ? (
-                    <td id="type" className={value.status ? "" : "disabled"}>
-                      {value.type}
-                    </td>
-                  ) : null}
-                  {tableHeading.includes(getKey["name"]) ? (
-                    <td
-                      id="name"
-                      className={value.status ? "" : "disabled"}
-                    >{`${value.name.first} ${value.name.last}`}</td>
-                  ) : null}
-                  {tableHeading.includes(getKey["matches"]) ? (
-                    <td id="matches" className={value.status ? "" : "disabled"}>
-                      {value.matches}
-                    </td>
-                  ) : null}
-                  {tableHeading.includes(getKey["match-status"]) ? (
-                    <td
-                      id="match-status"
-                      className={value.status ? "" : "disabled"}
-                    >
-                      {value.matchStatus}
-                    </td>
-                  ) : null}
-                  {tableHeading.includes(getKey["risk-level"]) ? (
-                    <td
-                      id="risk-level"
-                      className={value.status ? "" : "disabled"}
-                    >
-                      {value.riskLevel}
-                    </td>
-                  ) : null}
-                  {tableHeading.includes(getKey["watch-list"]) ? (
-                    <td
-                      id="watch-list"
-                      className={value.status ? "" : "disabled"}
-                    >
-                      {value.watchList}
-                    </td>
-                  ) : null}
-                  {tableHeading.includes(getKey["pep"]) ? (
-                    <td id="pep" className={value.status ? "" : "disabled"}>
-                      {[...value.pepClass].toString()}
-                    </td>
-                  ) : null}
-                  {tableHeading.includes(getKey["assigned"]) ? (
-                    <td
-                      id="assigned"
-                      className={value.status ? "" : "disabled"}
-                    >{`${value.assignTo.first} ${value.assignTo.last}`}</td>
-                  ) : null}
-                  {tableHeading.includes(getKey["status"]) ? (
-                    <td id="status">
-                      <label className="switch">
-                        <input type="checkbox" checked={value.status} />
-                        <span className="slider round"></span>
-                      </label>
-                    </td>
-                  ) : null}
-                  {tableHeading.includes(getKey["country"]) ? (
-                    <td id="country" className={value.status ? "" : "disabled"}>
-                      {value.country}
-                    </td>
-                  ) : null}
-                </tr>
-              );
+            return (
+              <tr key={value.id}>
+                <td id="sku">{value.data.sku}</td>
+
+                <td id="category">{value.data.category}</td>
+
+                <td id="description">{value.data.description}</td>
+
+                <td id="mc_price">{value.data.mc_price}</td>
+
+                <td id="product_image">
+                  <img
+                    className="product_image"
+                    src={value.data.product_image}
+                    alt={value.data.sku}
+                  />
+                </td>
+
+                <td id="product_name">{value.data.product_name}</td>
+
+                <td id="weight">{value.data.weight}</td>
+
+                <IconButton onClick={() => openEditMode(value)}>
+                  <EditIcon />
+                </IconButton>
+
+                <IconButton onClick={() => openViewMode(value)}>
+                  <VisibilityIcon />
+                </IconButton>
+
+                <IconButton onClick={() => openDeleteMode(value.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </tr>
+            );
           })}
         </tbody>
       </table>
