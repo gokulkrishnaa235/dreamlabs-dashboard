@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+// import App from "./App";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { dashboardTableReducer } from "./Store/reducer";
+import SignIn from "./Components/login";
 
 const enhancers = [applyMiddleware(thunk)];
 
@@ -24,7 +25,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <SignIn />
   </Provider>,
 
   document.getElementById("root")
